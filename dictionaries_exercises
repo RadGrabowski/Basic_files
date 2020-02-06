@@ -1,0 +1,40 @@
+def sort_by_value(dictionary, reverse=False):
+    return dict(sorted(dictionary.items(), key=lambda x: x[1], reverse=reverse))
+
+
+def common_keys(dictionary, dictionary2):
+    keys = d1.keys() & d2.keys()
+    return {key: (dictionary[key], dictionary2[key]) for key in keys}
+
+
+def sum_of_values(*dictionaries):
+    d = {}
+    for item in dictionaries:
+        for k, v in item.items():
+            d[k] = d.get(k, 0) + v
+    return sort_by_value(d, reverse=True)
+
+
+def not_present_keys(n1, n2, n3):
+    all_keys = {*n1, *n2, *n3}
+    not_common = [key for key in all_keys if not all((n1.get(key, 0), n2.get(key, 0), n3.get(key, 0)))]
+    return {key: (n1.get(key, 0), n2.get(key, 0), n3.get(key, 0)) for key in not_common}
+
+
+composers = {'Johann': 65, 'Ludwig': 56, 'Frederic': 39, 'Wolfgang': 35}
+# print(sort_by_value(composers))
+
+d1 = {'a': 1, 'b': 2, 'c': 3, 'd': 4}
+d2 = {'b': 20, 'c': 30, 'y': 40, 'z': 50}
+# print(common_keys(d1, d2))
+
+
+di1 = {'python': 10, 'java': 3, 'c#': 8, 'javascript': 15}
+di2 = {'java': 10, 'c++': 10, 'c#': 4, 'go': 9, 'python': 6}
+di3 = {'erlang': 5, 'haskell': 2, 'python': 1, 'pascal': 1}
+print(sum_of_values(di1, di2, di3))
+
+m1 = {'employees': 100, 'employee': 5000, 'users': 10, 'user': 100}
+m2 = {'employees': 250, 'users': 23, 'user': 230}
+m3 = {'employees': 150, 'users': 4, 'login': 1000}
+# print(not_present_keys(n1, n2, n3))
